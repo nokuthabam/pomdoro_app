@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django App{% endblock %}</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- MDB CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" integrity="sha512-AB1B3u2wupM5D7UEU9E2H3s3vmeHLwES/9dyz8AfEdjW/yfZ6AEWIXN2XREgD2e8FRMWo+9ptDpHAT2tmGSDFQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'journal/css/authentication.css' %}">
+</head>
+<body>
+    
+    
+    <div class="container">
+        {% block content %}
+        <!-- Content of child templates will go here -->
+        {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS (Optional, for certain Bootstrap components that require JavaScript) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-rgvb+qFdBOMXq1wJN5uXWnqVfVbLNA++yZxS62tAAk1m8zJZ/8wBgMKnL/gBFt/" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+2Qp2S2sfaRvwFbO+ndCbVv/NIW+p6I+8k0" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js" integrity="sha512-BpXcRJyLEdH7I4UzI39P/6MDGOP9McZ/aBQ5FJc1N5Y7B1BZSmRaT3T5N+IXjEBwUvEv9d1e0XzP+Y8UjEbDA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

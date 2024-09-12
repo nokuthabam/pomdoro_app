@@ -1,0 +1,19 @@
+{% extends "journal/base.html" %}
+
+{% block content %}
+<h2>Create a new journal entry</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_body">Body</label>
+        {{ form.body }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

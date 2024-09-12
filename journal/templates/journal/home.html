@@ -1,0 +1,19 @@
+{% extends "journal/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <!-- Book Image and Title -->
+    <div class="book-container text-center mb-4">
+        <h1 class="book-title">{{ user_first_name }}'s Journal</h1>
+    </div>
+    
+    <!-- Options to Create a New Entry and View Entries -->
+    <div class="options text-center">
+        <a href="{% url 'journal:create' %}" class="btn btn-primary btn-option">
+            <i class="fa-solid fa-pen-to-square"></i> Create New Entry
+        </a>
+        <a href="{% url 'journal:list' %}" class="btn btn-secondary btn-option">
+            <i class="fa-solid fa-list"></i> View Entries
+        </a>
+    </div>
+</div>
+{% endblock %}

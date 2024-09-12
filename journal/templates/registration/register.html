@@ -1,0 +1,103 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Registration - My Django App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Register</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- First Name -->
+        <div class="form-outline mb-4">
+            <input type="text" id="firstName" name="first_name" class="form-control" value="{{ form.first_name.value|default_if_none:'' }}" required />
+            <label class="form-label" for="firstName">First Name</label>
+            {% if form.first_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.first_name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-outline mb-4">
+            <input type="text" id="lastName" name="last_name" class="form-control" value="{{ form.last_name.value|default_if_none:'' }}" required />
+            <label class="form-label" for="lastName">Last Name</label>
+            {% if form.last_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.last_name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Username -->
+        <div class="form-outline mb-4">
+            <input type="text" id="username" name="username" class="form-control" value="{{ form.username.value|default_if_none:'' }}" required />
+            <label class="form-label" for="username">Username</label>
+            {% if form.username.errors %}
+                <div class="text-danger">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="form-outline mb-4">
+            <input type="email" id="email" name="email" class="form-control" value="{{ form.email.value|default_if_none:'' }}" required />
+            <label class="form-label" for="email">Email</label>
+            {% if form.email.errors %}
+                <div class="text-danger">
+                    {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Password -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password1" name="password" class="form-control" required />
+            <label class="form-label" for="password1">Password</label>
+            {% if form.password.errors %}
+                <div class="text-danger">
+                    {% for error in form.password.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password2" name="confirm_password" class="form-control" required />
+            <label class="form-label" for="password2">Confirm Password</label>
+            {% if form.confirm_password.errors %}
+                <div class="text-danger">
+                    {% for error in form.confirm_password.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+        </div>
+    </form>
+    <p class="text-center">Already a member? <a href="{% url 'journal:login' %}">Login here</a></p>
+</div>
+{% endblock %}
