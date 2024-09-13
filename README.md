@@ -62,10 +62,10 @@ To run this project on your local system, follow these steps:
 
 ## Usage
     - Visit http://127.0.0.1:8000/ to access the login page
-   - Click register o create your account and access the journal and focus timer.
+   - Click register to create your account and access the journal and focus timer.
 
 
-## Continuous INtegration: CircleCI Badge
+## Continuous Integration: CircleCI Badge
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/nokuthabam/pomdoro_app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/nokuthabam/pomdoro_app/tree/main)
 
 ### Code Coverage: CodeCov Badge
