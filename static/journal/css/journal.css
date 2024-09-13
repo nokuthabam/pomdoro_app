@@ -13,11 +13,32 @@ body {
     color: #ecf0f1 !important;
 }
 
+/* Light Mode Styles for Side Panel */
+.side-panel {
+    background-color: #f8f9fa; /* Light background for the side panel */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Add a right border to separate the panel */
+    height: 100vh; /* Make it take the full viewport height */
+}
+
+.list-group-item {
+    background-color: #ffffff; /* Light background for list items */
+    color: #343a40; /* Dark text color for list items */
+}
+
+.list-group-item a {
+    color: #007bff; /* Link color */
+}
+
+.list-group-item a:hover {
+    color: #0056b3; /* Darker link color on hover */
+}
+
 /* Dark Mode */
 body.dark-mode {
     font-family: "Century Gothic", 'Lato', sans-serif;
     background-color: #1c1c1c;
-    color: #f0f2f5;/*#2c3e50;*/
+    color: #f0f2f5;
 }
 
 body.dark-mode .navbar {
@@ -32,6 +53,25 @@ body.dark-mode .table-dark th,
 body.dark-mode .table-dark td,
 body.dark-mode .table-dark thead th {
     color: #bdc3c7;
+}
+
+/* Dark Mode Styles for Side Panel */
+body.dark-mode .side-panel {
+    background-color: #343a40; /* Dark background for the side panel */
+    color: #f0f2f5; /* Light text color */
+}
+
+body.dark-mode .list-group-item {
+    background-color: #495057; /* Dark background for list items */
+    color: #f0f2f5; /* Light text color for list items */
+}
+
+body.dark-mode .list-group-item a {
+    color: #9b59b6; /* Light purple color for links */
+}
+
+body.dark-mode .list-group-item a:hover {
+    color: #8e44ad; /* Darker purple color on hover */
 }
 
 /* Toggle Switch */
@@ -87,39 +127,7 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-
-/* Light Mode (default) */
-.nav-link {
-    color: #ffffff !important;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #27ae60 !important; /* Soft green hover effect */
-}
-
-/* Dark Mode */
-body.dark-mode .nav-link {
-    color: #bdc3c7 !important;
-}
-
-body.dark-mode .nav-link:hover {
-    color: #3498db !important; /* Soft blue hover effect */
-}
-
-.custom-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    border-radius: 8px;
-    text-transform: uppercase;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-
+/* Button and Card Styles */
 .custom-btn {
     display: flex;
     align-items: center;
@@ -141,10 +149,7 @@ body.dark-mode .nav-link:hover {
     font-size: 24px;
 }
 
-
-
-
-/* Default Light Mode Styles */
+/* Card Styles */
 .card-header {
     background-color: #f8f9fa; /* Light background for card headers */
 }
@@ -154,7 +159,6 @@ body.dark-mode .nav-link:hover {
     border-color: #e0e0e0; /* Light border for cards */
 }
 
-/* Dark Mode Styles */
 body.dark-mode .card-header {
     background-color: #343a40; /* Dark background for card headers */
     color: #ffffff; /* Light text color for card headers */
@@ -164,10 +168,254 @@ body.dark-mode .card.bg-light {
     background-color: #495057; /* Dark background for cards */
     border-color: #6c757d; /* Dark border for cards */
 }
+.btn-cute {
+    background-color: #f8f9fa; /* Light background color */
+    border: 2px solid #007bff; /* Border color */
+    color: #007bff; /* Text color */
+    border-radius: 25px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+.btn-cute:hover {
+    background-color: #007bff; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+.btn-cute {
+    background-color: #f8f9fa; /* Light background color */
+    border: 2px solid #007bff; /* Border color */
+    color: #007bff; /* Text color */
+    border-radius: 25px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    text-decoration: none; /* Remove underline */
+}
+
+.btn-cute:hover {
+    background-color: #007bff; /* Background color on hover */
+    color: #fff; /* Text color on hover */
+}
+
+.card {
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
+}
+
+.card-footer {
+    border-radius: 0 0 15px 15px; /* Rounded bottom corners */
+}
+
+/* Light Mode (default) */
+body {
+    font-family: "Century Gothic", 'Lato', sans-serif;
+    background-color: #f0f2f5;
+    color: #343a40;
+}
+
+.navbar {
+    background-color: #2c3e50 !important; /* Dark background */
+}
+
+.nav-link, .navbar-brand {
+    color: #ecf0f1 !important;
+}
+
+/* Light Mode Styles for Side Panel */
+.side-panel {
+    background-color: #f8f9fa; /* Light background for the side panel */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Add a right border to separate the panel */
+    height: 100vh; /* Make it take the full viewport height */
+}
+
+.list-group-item {
+    background-color: #ffffff; /* Light background for list items */
+    color: #343a40; /* Dark text color for list items */
+}
+
+.list-group-item a {
+    color: #007bff; /* Link color */
+}
+
+.list-group-item a:hover {
+    color: #0056b3; /* Darker link color on hover */
+}
+
+/* Dark Mode */
+body.dark-mode {
+    font-family: "Century Gothic", 'Lato', sans-serif;
+    background-color: #1c1c1c;
+    color: #f0f2f5;
+}
+
+body.dark-mode .navbar {
+    background-color: #1c1c1c !important;
+}
+
+body.dark-mode .nav-link, body.dark-mode .navbar-brand {
+    color: #bdc3c7 !important;
+}
+
+body.dark-mode .table-dark th,
+body.dark-mode .table-dark td,
+body.dark-mode .table-dark thead th {
+    color: #bdc3c7;
+}
+
+/* Dark Mode Styles for Side Panel */
+body.dark-mode .side-panel {
+    background-color: #343a40; /* Dark background for the side panel */
+    color: #f0f2f5; /* Light text color */
+}
 
 body.dark-mode .list-group-item {
     background-color: #495057; /* Dark background for list items */
-    color: #ffffff; /* Light text color for list items */
+    color: #f0f2f5; /* Light text color for list items */
+}
+
+body.dark-mode .list-group-item a {
+    color: #9b59b6; /* Light purple color for links */
+}
+
+body.dark-mode .list-group-item a:hover {
+    color: #8e44ad; /* Darker purple color on hover */
+}
+
+/* Entry Body Styles */
+.entry-body {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #ffffff; /* Light background by default */
+}
+
+.entry-body ul {
+    padding-left: 1.5rem; /* Indentation for lists */
+}
+
+/* Dark Mode Entry Body */
+body.dark-mode .entry-body {
+    background-color: #2c3e50; /* Dark background for entry body */
+    color: #ecf0f1; /* Light text color for entry body */
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #b0b0b0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #27ae60;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Button and Card Styles */
+.custom-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    border: 2px solid transparent;
+}
+
+.custom-btn i {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 24px;
+}
+
+/* Card Styles */
+.card-header, .card-footer {
+    background-color: #f8f9fa; /* Light background for card headers and footers */
+}
+
+.card.bg-light {
+    background-color: #ffffff; /* Light background for cards */
+    border-color: #e0e0e0; /* Light border for cards */
+}
+
+
+
+body.dark-mode .card-header, body.dark-mode .card-body ,body.dark-mode .card-footer {
+    background-color: #343a40; /* Dark background for card headers and footers */
+    color: #ffffff; /* Light text color for card headers and footers */
+}
+
+body.dark-mode .card.bg-light {
+    background-color: #495057; /* Dark background for cards */
+    border-color: #6c757d; /* Dark border for cards */
+}
+
+.btn-cute {
+    background-color: #f8f9fa; /* Light background color */
+    border: 2px solid #007bff; /* Border color */
+    color: #007bff; /* Text color */
+    border-radius: 25px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+    text-decoration: none; /* Remove underline */
+}
+
+.btn-cute:hover {
+    background-color: #007bff; /* Background color on hover */
+    color: #fff; /* Text color on hover */
 }
 
 

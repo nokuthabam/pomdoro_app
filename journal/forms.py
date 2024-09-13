@@ -1,6 +1,7 @@
 from django import forms
 from .models import JournalEntry
 from django.contrib.auth.models import User
+from tinymce.widgets import TinyMCE
 
 
 class JournalEntryForm(forms.ModelForm):
@@ -17,6 +18,10 @@ class JournalEntryForm(forms.ModelForm):
         """
         model = JournalEntry
         fields = ['title', 'body']
+        widgets = {
+            'title': forms.TextInput(attrs={'size': 80}),
+            'body': TinyMCE(attrs={'cols': 80, 'rows': 20})
+        }
 
 
 class UserRegistrationForm(forms.ModelForm):

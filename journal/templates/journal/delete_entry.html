@@ -1,0 +1,13 @@
+{% extends "journal/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Entry</h2>
+    <p>Are you sure you want to delete the entry titled "{{ entry.title }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'journal:entry_detail' entry.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -5,6 +5,8 @@ from .forms import JournalEntryForm
 from .forms import UserRegistrationForm
 from .models import JournalEntry
 from django.contrib import messages
+from django.utils import timezone
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -99,6 +101,9 @@ def create_entry(request):
     Returns:
         HttpResponse: The response object
     """
+    current_date = timezone.now().strftime('%A %d. %B %Y')
+    journal_entries = JournalEntry.objects\
+        .filter(user=request.user).order_by('-created_at')
     if request.method == 'POST':
         form = JournalEntryForm(request.POST)
         if form.is_valid():
@@ -111,4 +116,61 @@ def create_entry(request):
             print(f"Form errors: {form.errors}")
     else:
         form = JournalEntryForm()
-    return render(request, 'journal/create_entry.html', {'form': form})
+    return render(request, 'journal/create_entry.html',
+                  {'form': form, 'current_date': current_date,
+                   'journal_entries': journal_entries})
+
+
+@login_required
+def entry_detail(request, id):
+    """
+    A function used to render the detail page for a journal entry
+    Args:
+        request (HttpRequest): The request object
+        entry_id (int): The id of the journal entry
+    Returns:
+        HttpResponse: The response object
+    """
+    entry = get_object_or_404(JournalEntry, pk=id)
+    return render(request, 'journal/entry_detail.html', {'entry': entry})
+
+
+@login_required
+def edit_entry(request, id):
+    """
+    A function used to edit a journal entry
+    Args:
+        request (HttpRequest): The request object
+        id (int): The id of the journal entry
+    Returns:
+        HttpResponse: The response object
+    """
+    entry = get_object_or_404(JournalEntry, id=id, user=request.user)
+
+    if request.method == 'POST':
+        form = JournalEntryForm(request.POST, instance=entry)
+        if form.is_valid():
+            form.save()
+            return redirect('journal:entry_detail', id=entry.id)
+    else:
+        form = JournalEntryForm(instance=entry)
+
+    return render(request, 'journal/edit_entry.html',
+                  {'form': form, 'entry': entry})
+
+
+@login_required
+def delete_entry(request, id):
+    """
+    A function used to delete a journal entry
+    Args:
+        request (HttpRequest): The request object
+        id (int): The id of the journal entry
+    Returns:
+        HttpResponse: The response object
+    """
+    entry = get_object_or_404(JournalEntry, id=id, user=request.user)
+    if request.method == 'POST':
+        entry.delete()
+        return redirect('journal:home')
+    return render(request, 'journal/delete_entry.html', {'entry': entry})

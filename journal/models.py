@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 # Create your models here.
 
 
@@ -14,7 +15,7 @@ class JournalEntry(models.Model):
         user (ForeignKey): The user who created the entry
     """
     title = models.CharField(max_length=200)
-    body = models.TextField()  # For larger text fields
+    body = HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,
