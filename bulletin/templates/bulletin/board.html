@@ -1,0 +1,187 @@
+{% extends "bulletin/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ bulletin_board.title }}</h1>
+    <p>{{ bulletin_board.description }}</p>
+
+    <div id="bulletin-board" class="bulletin-board">
+        <div class="draggable-container">
+            <!-- Render Notes and Images Together -->
+            {% for note in notes %}
+                <div class="draggable note" 
+                     style="top: {{ note.position_y }}px; left: {{ note.position_x }}px;" 
+                     data-id="{{ note.id }}" 
+                     data-type="note">
+                    <!-- Trash Icon for Deleting Notes -->
+                    <a href="{% url 'bulletin:delete_note' note.id %}" class="delete-icon" 
+                       onclick="return confirm('Are you sure you want to delete this note?');">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </a>
+                    {{ note.content|safe }}
+                </div>
+            {% endfor %}
+
+            {% for image in images %}
+                <div class="draggable image" 
+                     style="top: {{ image.position_y }}px; left: {{ image.position_x }}px;" 
+                     data-id="{{ image.id }}" 
+                     data-type="image">
+                    <!-- Trash Icon for Deleting Images -->
+                    <a href="{% url 'bulletin:delete_image' image.id %}" class="delete-icon" 
+                       onclick="return confirm('Are you sure you want to delete this image?');">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </a>
+                    <img src="{{ image.image.url }}" alt="Image for {{ bulletin_board.title }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="{% url 'bulletin:add_note' bulletin_board.id %}" class="btn btn-primary mt-3">Add New Note</a>
+    <a href="{% url 'bulletin:add_image' bulletin_board.id %}" class="btn btn-secondary mt-3">Add an Image</a>
+
+    <!-- Delete Bulletin Board Button -->
+    <a href="{% url 'bulletin:delete_board' bulletin_board.id %}" class="btn btn-danger mt-3"
+       onclick="return confirm('Are you sure you want to delete this bulletin board?');">Delete Board</a>
+
+    <!-- Back to List Button -->
+    <a href="{% url 'bulletin:home' %}" class="btn btn-secondary mt-3 btn-cute">
+        <i class="fas fa-arrow-left"></i> Back to List
+    </a>
+</div>
+
+<!-- Add the JavaScript for drag and drop functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const draggables = document.querySelectorAll('.draggable');
+        let currentDraggedElement = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        draggables.forEach(draggable => {
+            // Listen for mousedown events to start dragging
+            draggable.addEventListener('mousedown', function (e) {
+                // Prevent dragging on delete or edit icon clicks
+                if (e.target.classList.contains('delete-icon') || e.target.closest('.delete-icon') ||
+                    e.target.classList.contains('edit-icon') || e.target.closest('.edit-icon')) {
+                    e.stopPropagation();
+                    return;
+                }
+
+                currentDraggedElement = this;
+                currentDraggedElement.style.position = 'absolute';
+                currentDraggedElement.style.zIndex = '1000';
+
+                // Calculate the offset from the mouse to the element's top-left corner
+                offsetX = e.clientX - currentDraggedElement.getBoundingClientRect().left;
+                offsetY = e.clientY - currentDraggedElement.getBoundingClientRect().top;
+
+                function moveAt(pageX, pageY) {
+                    currentDraggedElement.style.left = pageX - offsetX + 'px';
+                    currentDraggedElement.style.top = pageY - offsetY + 'px';
+                }
+
+                // Move the element when the mouse is moved
+                moveAt(e.pageX, e.pageY);
+
+                // Attach the mousemove event to the document
+                const onMouseMove = (event) => moveAt(event.pageX, event.pageY);
+                document.addEventListener('mousemove', onMouseMove);
+
+                // When the mouse is released
+                document.addEventListener('mouseup', function onMouseUp() {
+                    // Remove the mousemove event and stop dragging
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+
+                    // Get the ID and type from the current element
+                    const id = currentDraggedElement.dataset.id;
+                    const type = currentDraggedElement.dataset.type;
+
+                    // Check if ID is defined before making a request
+                    if (id !== undefined) {
+                        // Send an AJAX request to update the position
+                        const positionX = parseInt(currentDraggedElement.style.left);
+                        const positionY = parseInt(currentDraggedElement.style.top);
+
+                        fetch(`/bulletin/update_position/${id}/`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            },
+                            body: JSON.stringify({
+                                position_x: positionX,
+                                position_y: positionY,
+                                item_type: type  // 'note' or 'image'
+                            })
+                        });
+                    } else {
+                        console.error('Error: Element ID is undefined.');
+                    }
+
+                    currentDraggedElement = null;
+                });
+            });
+
+            // Prevent default drag behavior
+            draggable.ondragstart = function () {
+                return false;
+            };
+        });
+    });
+</script>
+
+<!-- CSS for Delete and Edit Icons in Corner -->
+<style>
+    .delete-icon, .edit-icon {
+        position: absolute;
+        top: 5px;
+        font-size: 1.5rem; /* Font size for icons */
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+        border-radius: 50%;
+        padding: 5px;
+        z-index: 10; /* Ensure it appears above other elements */
+    }
+
+    .delete-icon {
+        right: 5px; /* Position in top-right corner */
+        color: #dc3545; /* Red for delete */
+    }
+
+    .delete-icon:hover {
+        color: #ffffff;
+        background-color: #dc3545;
+        border-color: #c82333;
+    }
+
+    .edit-icon {
+        right: 45px; /* Position next to the delete icon */
+        color: #007bff; /* Blue for edit */
+    }
+
+    .edit-icon:hover {
+        color: #ffffff;
+        background-color: #007bff;
+        border-color: #0056b3;
+    }
+
+    .btn-cute {
+        background-color: #f8f9fa;
+        border: 2px solid #007bff;
+        color: #007bff;
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-cute:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+
+{% endblock %}

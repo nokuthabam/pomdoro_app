@@ -1,0 +1,23 @@
+{% extends 'bulletin/base.html' %}
+
+{% block title %}
+    Add Image - {{ bulletin_board.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Add Image to {{ bulletin_board.title }}</h1>
+    <p>{{ bulletin_board.description }}</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control-file" id="image" name="image" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Image</button>
+    </form>
+
+    <a href="{% url 'bulletin:board' bulletin_board.id %}" class="btn btn-secondary mt-3">Back to Board</a>
+</div>
+{% endblock %}
