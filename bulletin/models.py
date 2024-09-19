@@ -62,7 +62,7 @@ class Image(models.Model):
         position_x (IntegerField): The x position of the image on the board
         position_y (IntegerField): The y position of the image on the board
     """
-    image = models.ImageField(upload_to='media/images/')
+    image = models.ImageField(upload_to='images/')
     created_at = models.DateTimeField(auto_now_add=True)
     bulletin_board = models.ForeignKey(BulletinBoard, on_delete=models.CASCADE,
                                        related_name='images', null=True)
