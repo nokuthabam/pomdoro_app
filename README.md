@@ -26,8 +26,9 @@ The Productivity Application is designed to help users stay focused and organize
 The project is organized into the following directories:
 
 - `pomodoro/`: Contains Django project settings and configurations.
+- `bulletin/`: The Django app for the bulletin boards.
 - `journal/`: The Django app for the journal.
-- `focus_timer/`: The django app for the pomodoro timer.
+- `focus_timer/`: The Django app for the pomodoro timer.
 - `static/`: Houses static files such as CSS, music, and images.
 
 ## Application Installation
@@ -62,7 +63,7 @@ To run this project on your local system, follow these steps:
 
 ## Usage
     - Visit http://127.0.0.1:8000/ to access the login page
-   - Click register to create your account and access the journal and focus timer.
+   - Click register to create your account and access the journal, bulletin board and focus timer.
 
 
 ## Continuous Integration: CircleCI Badge
