@@ -71,7 +71,7 @@ def home(request):
         HttpResponse: The response object
     """
     # Retrieve all journal entries
-    user_first_name = request.user.first_name
+    user_first_name = request.user
     return render(request, 'journal/home.html',
                   {'user_first_name': user_first_name})
 

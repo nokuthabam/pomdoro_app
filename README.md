@@ -38,14 +38,13 @@ To run this project on your local system, follow these steps:
    ```bash
    https://github.com/nokuthabam/pomdoro_app.git
 
-2. Install project dependencies:
-   - ```pip install -r requirements.txt```
-
-3. Installing Django and creating a virtual environment:
+2. Installing Django and creating a virtual environment:
    - ```mkvirtualenv my_django```
    - ```workon my_django```
    - ```pip install django```
 
+3. Install project dependencies:
+   - ```pip install -r requirements.txt```
 
 3. Navigate to the project directory:
    - ```cd pomdoro_app```
