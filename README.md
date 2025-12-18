@@ -12,7 +12,6 @@
 9. [License](#license)
 
 ## Project Description:
-A dynamic web application that allows users
 The Productivity Application is designed to help users stay focused and organized by combining two essential tools: a music-enhanced Pomodoro timer and a personal journal. The Pomodoro timer allows users to manage their work and break intervals using the Pomodoro technique, while listening to lofi or chill music to create a calming work environment. The application also includes a journal feature where users can write, format, and track their thoughts or tasks, making it a holistic tool for improving focus and productivity.
 
 ### Key Features:
